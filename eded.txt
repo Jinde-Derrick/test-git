@@ -1,13 +1,72 @@
 
-asddfg
-sd123
 
-we
-asdas
-asda
+{
+
+u'taskCode': u'by001122', 
+
+u'reqTime': u'2019-07-01 11:21:31', 
+
+u'clientCode': u'clientCode', 
+
+u'tokenCode': u'tolenCode', 
+
+u'reqCode': u'112233445566', 
+
+u'callCode': u'A', 
+
+u'data': u'', 
+
+u'method': u'method', 
+
+u'currentCallCode': u'A'
+
+}
 
 
-BagMRU以及Bags
 
-ee 123
-456
+//
+#include <SoftwareSerial.h>
+SoftwareSerial portTwo(8, 6);//(rx,tx)
+
+
+//
+#include "Timer.h"
+Timer t;
+
+int ledEvent;
+
+void setup()
+{
+
+    int tickEvent = t.every(2000, doSomething, (void*)0);
+	
+    Serial.print("2 second tick started id=");
+    Serial.println(tickEvent);
+
+    ledEvent = t.oscillate(13, 50, HIGH);
+	
+
+    int afterEvent = t.after(10000, doAfter, (void*)0);
+}
+
+void loop()
+{
+    t.update();
+}
+
+void doSomething(void *context)
+{
+    Serial.print("2 second tick: millis()=");
+    Serial.println(millis());
+}
+
+void doAfter(void *context)
+{
+    Serial.println("stop the led event");
+    t.stop(ledEvent);
+    t.oscillate(13, 500, HIGH, 5);
+}
+
+
+//
+RTOS
