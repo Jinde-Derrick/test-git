@@ -12,10 +12,6 @@ u'tokenCode': u'tolenCode',
 
 u'reqCode': u'112233445566', 
 
-u'callCode': u'A', 
-
-u'data': u'', 
-
 u'method': u'method', 
 
 u'currentCallCode': u'A'
